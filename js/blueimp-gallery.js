@@ -44,6 +44,20 @@
         this.num = list.length;
         this.initOptions(options);
         this.initialize();
+        this.remoteDisplayAvailable = false;
+        try {
+            this.remoteDisplayAvailable = navigator.experimental.presentation.displayAvailable;
+            if (this.remoteDisplayAvailable) {
+                navigator.experimental.presentation.requestShow(
+				        "remoteView.html",
+                    function(win) {
+                        Gallery.windowProxy = win;
+                    },
+                    function() {alert("Remote display failed");}
+                );
+            }
+        } catch(e) {
+        }
     }
 
     $.extend(Gallery.prototype, {
@@ -278,6 +292,14 @@
             // Start the automatic slideshow if applicable:
             if (this.options.startSlideshow) {
                 this.play();
+            }
+        },
+
+        sendToRemoteView: function(index) {
+            var url = this.getItemProperty(this.list[index], this.options.urlProperty);
+            try {
+                Gallery.windowProxy.postMessage(url, "*");
+            } catch(e) {
             }
         },
 
@@ -872,6 +894,8 @@
             this.index = index;
             this.handleSlide(index);
             this.setTimeout(this.options.onslide, [index, this.slides[index]]);
+            if (this.remoteDisplayAvailable)
+                this.sendToRemoteView(index);
         },
 
         setTitle: function (index) {
