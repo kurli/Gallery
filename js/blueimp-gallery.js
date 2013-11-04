@@ -46,17 +46,20 @@
         this.initialize();
         this.remoteDisplayAvailable = false;
         try {
-            this.remoteDisplayAvailable = navigator.experimental.presentation.displayAvailable;
+            this.remoteDisplayAvailable = navigator.presentation.displayAvailable;
             if (this.remoteDisplayAvailable) {
-                navigator.experimental.presentation.requestShow(
+                navigator.presentation.requestShow(
 				        "remoteView.html",
                     function(win) {
                         Gallery.windowProxy = win;
                     },
-                    function() {alert("Remote display failed");}
+                    function(error) {
+                        console.error("failed to show presentation on remote display!");
+                    }
                 );
             }
         } catch(e) {
+            console.error("failed to use remote display");
         }
     }
 
@@ -300,6 +303,7 @@
             try {
                 Gallery.windowProxy.postMessage(url, "*");
             } catch(e) {
+                console.error("failed to post message to remote window");
             }
         },
 
