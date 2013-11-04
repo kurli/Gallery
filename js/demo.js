@@ -47,14 +47,17 @@ $(function () {
             });
         });
         // Initialize the Gallery as image carousel:
-        blueimp.Gallery(carouselLinks, {
+        window.imageGallery = blueimp.Gallery(carouselLinks, {
             container: '#blueimp-image-carousel',
             carousel: true
         });
+
+        if (window.showImageOnSecondaryDisplay)
+          window.showImageOnSecondaryDisplay();
     });
-/*
+
     // Initialize the Gallery as video carousel:
-    blueimp.Gallery([
+    window.videoGallery = blueimp.Gallery([
         {
             title: 'Sintel',
             href: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
@@ -97,5 +100,5 @@ $(function () {
         container: '#blueimp-video-carousel',
         carousel: true
     });
-*/
+
 });

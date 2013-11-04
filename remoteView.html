@@ -1,107 +1,30 @@
 <html>
 <head>
-<style>
-html,body{background:#000000;}
-table{
-    width: 100%;
-    height: 100%;
-    margin:0 auto;
-}
-</style>
-</head>
-<body onload="onLoad()">
-<table id="imgTable">
-<tr>
-<td align="center">
-<div id="imgDiv" align="center">
-    <img id="img" alt="5" />
-</div>
-</td>
-</tr>>
-</table>
-<script>
-var img;
-var timer;
-var opacity = 1.0;
-var imgSrc = "";
-var displayW;
-var displayH;
-
-function onLoad() {
-    img = document.getElementById("img");
-    var imgTable = document.getElementById("imgTable");
-    displayW = imgTable.clientWidth;
-    displayH = imgTable.clientHeight;
-    resizeImg(img, displayW, displayH);
-}
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript">
 
 function receiveMessage(e) {
     imgSrc = event.data;
-
-    if (timer)
-        window.clearInterval(timer);
-    timer = setInterval(function(){clearImg()},10);
+    updateImageSource(imgSrc);
 }
+
+function updateImageSource(imgSrc) {
+    $('img').fadeOut('slow',function(){
+        $(this).attr('src', imgSrc).fadeIn('slow');
+    });
+}
+
 window.addEventListener("message", receiveMessage, false);
 
-function clearDone(){
-    opacity = 0;
-    img.style.opacity = opacity;
-    window.clearInterval(timer);
-    timer = setInterval(function(){displayImg()},10);
-
-    var imgTmp = document.createElement("IMG");
-    imgTmp.src = imgSrc;
-    var imgDiv = document.getElementById("imgDiv");
-    imgDiv.removeChild(img);
-    imgDiv.appendChild(imgTmp);
-    img = imgTmp;
-
-    resizeImg(img, displayW, displayH);
-}
-
-function clearImg(){
-    if (opacity <= 0.001){
-        clearDone();
-        return;
-    }
-    
-    opacity -= 0.05;
-    img.style.opacity = opacity;
-}
-
-function displayDone(){
-    window.clearInterval(timer);
-    timer = 0;
-    opacity = 1;
-    img.style.opacity = opacity;
-}
-
-function displayImg(){
-    if (opacity >= 1){
-        displayDone();
-        return;
-    }
-    
-    opacity += 0.05;
-    img.style.opacity = opacity;
-}
-
-function resizeImg(img, maxWidth, maxHeight){  
-    var w = img.clientWidth,
-    h = img.clientHeight;
-    var wProportion, hProportion, proportion;
- 
-    if(w < maxWidth && h < maxHeight) return;
-    
-    wProportion = maxWidth/w;
-    hProportion = maxHeight/h;
-    
-    wProportion > hProportion ? proportion = hProportion : proportion = wProportion;
-    img.width = w*proportion;
-    img.height = h*proportion;
-}; 
-
 </script>
+</head>
+<body bgcolor="#000000">
+<table id="imgTable" style="width:100%; height:100%; margin:0 auto;">
+    <tr>
+        <td align="center">
+              <img id="img" src="" />
+        </td>
+    </tr>
+</table>
 </body>
 </html>

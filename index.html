@@ -26,9 +26,9 @@
 <link rel="stylesheet" href="css/demo.css">
 </head>
 <body>
-<h1>Image Gallery</h1>
-<p style="font-size:16px"><bold>View Your Photos On Wireless Display</bold></p>
-<p>Image Gallery is a web app powered by <a href="https://crosswalk-project.org">Crosswalk</a> runtime, built on top of <a href="https://github.com/blueimp/Gallery">blueimp Gallery</a> (MIT license), to demo the capability of showing the photo on wireless display via JavaScript <a href="http://otcshare.github.io/presentation-spec/index.html">Presentation API</a>.</p>
+<h1 style="margin:0">Image Gallery</h1>
+<p style="font-size:14px;margin-top:0"><bold>View Your Photos On Wireless Display</bold></p>
+<p>Image Gallery is a web app powered by <a href="https://crosswalk-project.org">Crosswalk</a> runtime, built on top of <a href="https://github.com/blueimp/Gallery">blueimp Gallery</a> (MIT license), to demo the capability of showing photo on wireless display via JavaScript <a href="http://otcshare.github.io/presentation-spec/index.html">Presentation API</a>.</p>
 <p>See <a href="#setup">How to Setup</a> for wireless display setup.</p>
 <!-- The Gallery as inline carousel, can be positioned anywhere on the page -->
 <div id="blueimp-image-carousel" class="blueimp-gallery blueimp-gallery-carousel">
@@ -52,7 +52,7 @@
         <li>Turn on 'Wireless display' to connect the available wireless display</li>
     </ol>
     <h3>Use Simulated Secondary Display</h3>
-    <p>If you have no such wireless display adapter, but are willing to play it on device, you could use the simulated secondary display:</p>
+    <p>If you have no such wireless display adapter, but are willing to play it on your device, you could use the simulated secondary display:</p>
     <ol>
         <li>Open 'Setting' app and select 'Developer Options' entry</li>
         <li>Find 'Simulate Secondary Display' to select a display</li>
@@ -80,5 +80,6 @@ if (!window.jQuery) {
 </script>
 <script src="js/jquery.blueimp-gallery.js"></script>
 <script src="js/demo.js"></script>
+<script src="js/presentation.js"></script>
 </body>
 </html>
