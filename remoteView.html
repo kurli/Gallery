@@ -1,7 +1,5 @@
 <html>
 <head>
-</htad>
-<body onload="onLoad()">
 <style>
 html,body{background:#000000;}
 table{
@@ -10,13 +8,13 @@ table{
     margin:0 auto;
 }
 </style>
+</head>
+<body onload="onLoad()">
 <table id="imgTable">
 <tr>
 <td align="center">
 <div id="imgDiv" align="center">
     <img id="img" alt="5" />
-    <br>
-    <input id="test" type="button" value="test" style="display:none" />
 </div>
 </td>
 </tr>>
@@ -45,15 +43,6 @@ function receiveMessage(e) {
     timer = setInterval(function(){clearImg()},10);
 }
 window.addEventListener("message", receiveMessage, false);
-
-document.getElementById("test").onclick = 
-function(){
-    img = document.getElementById("img");
-    if (timer)
-        window.clearInterval(timer);
-    timer = setInterval(function(){clearImg()},10);
-    resizeImg(img, displayW, displayH);
-}
 
 function clearDone(){
     opacity = 0;
