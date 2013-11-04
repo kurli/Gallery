@@ -37,9 +37,6 @@
     }
   }
 
-  if (navigator.presentation.displayAvailable && window.imageGallery)
-    requestShow();
-
   navigator.presentation.addEventListener("displayavailablechange", function() {
     if (navigator.presentation.displayAvailable) {
       console.log("The secondary display is available now");
