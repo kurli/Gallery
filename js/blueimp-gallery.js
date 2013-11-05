@@ -44,23 +44,6 @@
         this.num = list.length;
         this.initOptions(options);
         this.initialize();
-        this.remoteDisplayAvailable = false;
-        try {
-            this.remoteDisplayAvailable = navigator.presentation.displayAvailable;
-            if (this.remoteDisplayAvailable) {
-                navigator.presentation.requestShow(
-				        "remoteView.html",
-                    function(win) {
-                        Gallery.windowProxy = win;
-                    },
-                    function(error) {
-                        console.error("failed to show presentation on remote display!");
-                    }
-                );
-            }
-        } catch(e) {
-            console.error("failed to use remote display");
-        }
     }
 
     $.extend(Gallery.prototype, {
@@ -295,15 +278,6 @@
             // Start the automatic slideshow if applicable:
             if (this.options.startSlideshow) {
                 this.play();
-            }
-        },
-
-        sendToRemoteView: function(index) {
-            var url = this.getItemProperty(this.list[index], this.options.urlProperty);
-            try {
-                Gallery.windowProxy.postMessage(url, "*");
-            } catch(e) {
-                console.error("failed to post message to remote window");
             }
         },
 
@@ -898,8 +872,8 @@
             this.index = index;
             this.handleSlide(index);
             this.setTimeout(this.options.onslide, [index, this.slides[index]]);
-            if (this.remoteDisplayAvailable)
-                this.sendToRemoteView(index);
+            if (this.sendToRemoteView)
+              this.sendToRemoteView();
         },
 
         setTitle: function (index) {
