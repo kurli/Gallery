@@ -33,7 +33,7 @@
     if (remoteWindow) {
       remoteWindow.postMessage(url, "*");
     } else {
-      console.error("remote window is not created yet");
+      showImageOnSecondaryDisplay();
     }
   }
 

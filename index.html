@@ -39,15 +39,7 @@ function toggleVisible(targetId) {
 <h1 style="margin:0">Image Gallery</h1>
 <p style="font-size:14px;margin-top:0"><bold>View Your Photos On Wireless Display</bold></p>
 <p>Image Gallery is a web app powered by <a href="https://crosswalk-project.org">Crosswalk</a> runtime, built on top of <a href="https://github.com/blueimp/Gallery">blueimp Gallery</a> (MIT license), to demo the capability of showing photo on wireless display via JavaScript <a href="http://otcshare.github.io/presentation-spec/index.html">Presentation API</a>.</p>
-<!-- The Gallery as inline carousel, can be positioned anywhere on the page -->
-<div id="blueimp-image-carousel" class="blueimp-gallery blueimp-gallery-carousel">
-    <div class="slides"></div>
-    <h3 class="title"></h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="play-pause"></a>
-</div>
-<p><a href="javascript:toggleVisible('help')">See instructions for wireless display setup:</a></p>
+<p><a href="javascript:toggleVisible('help')">Click here for how to setup wireless display.</a></p>
 <div id='help' style="display:none">
     <h3>Requirements:</h3>
     <ol>
@@ -68,6 +60,14 @@ function toggleVisible(targetId) {
         <li>Find 'Simulate Secondary Display' to select a display</li>
     </ol>
     <p>You will see an overlay on the screen. It is a simulated display. Have a fun!</p>
+</div>
+<!-- The Gallery as inline carousel, can be positioned anywhere on the page -->
+<div id="blueimp-image-carousel" class="blueimp-gallery blueimp-gallery-carousel">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="play-pause"></a>
 </div>
 <script src="js/blueimp-helper.js"></script>
 <script src="js/blueimp-gallery.js"></script>
